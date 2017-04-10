@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="number_of_guesses_list">
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="type_of_animals">
+        <item>Wild animals</item>
+        <item>Tame animals</item>
+    </string-array>
+
+    <string-array name="type_of_animal_values">
+        <item>wild_animals</item>
+        <item>tame_animals</item>
+    </string-array>
+
+    <string-array name="colors">
+        <item>White</item>
+        <item>Black</item>
+        <item>Green</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <string-array name="fonts">
+        <item>ChunkFive</item>
+        <item>FontleroyBrown</item>
+        <item>Wonderbar Demo</item>
+    </string-array>
+
+    <string-array name="fonts_values">
+        <item>Chunkfive.otf</item>
+        <item>FontleroyBrown.ttf</item>
+        <item>Wonderbar Demo.otf</item>
+    </string-array>
+</resources>

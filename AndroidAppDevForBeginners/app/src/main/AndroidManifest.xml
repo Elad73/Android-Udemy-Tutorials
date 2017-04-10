@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.eladron.androidappdevforbeginners">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UnderConstruction"
+            android:label="@string/UnderConstruction" />
+        <activity
+            android:name=".AppsMenuActivity"
+            android:label="@string/app_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App34_CustomizedListViewActivity"
+            android:label="@string/app34_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App35_ExpandableListViewActivity"
+            android:label="@string/app35_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App36_GridViewActivity"
+            android:label="@string/app36_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App37_GalleryAndScrollViewActivity"
+            android:label="@string/app37_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App38_ImageSwitcherActivity"
+            android:label="@string/app38_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App39_FlipImageActivity"
+            android:label="@string/app39_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App40_TextSwitcher"
+            android:label="@string/app40_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".App41_CheckboxRadiobuttonRatingbarSeekbar"
+            android:label="@string/app41_menu" />
+        <activity
+            android:name=".App42_Contacts"
+            android:label="@string/app42_menu" />
+        <activity
+            android:name=".App43_SDCard_Permissions"
+            android:label="@string/app43_menu" />
+        <activity
+            android:name=".App44_InfoFrom1ActivityToOther"
+            android:label="@string/app44_menu" />
+        <activity
+            android:name=".App44_SecondActivity"
+            android:label="@string/app44_menu2" />
+        <activity
+            android:name=".App45_AccessPhoneServices"
+            android:label="@string/app45_menu" />
+        <activity
+            android:name=".App46_UsingTabHost"
+            android:label="@string/app46_menu" />
+        <activity
+            android:name=".App46_FirstTabActivity"
+            android:label="@string/app46_tab1_menu" />
+        <activity
+            android:name=".App46_SecondTabActivity"
+            android:label="@string/app46_tab2_menu" />
+        <activity
+            android:name=".App46_ThirdTabActivity"
+            android:label="@string/app46_tab3_menu" />
+        <activity
+            android:name=".App46_AnotherTypeHostActivity"
+            android:label="@string/app46_menu2" />
+        <activity
+            android:name=".App47_Fonts"
+            android:label="@string/app47_menu" />
+        <activity
+            android:name=".App48_UsingMenu"
+            android:label="@string/app48_menu" />
+        <activity
+            android:name=".App49_DownloadImageFromInternet"
+            android:label="@string/app49_menu" />
+        <activity
+            android:name=".App50_SharedPrefences"
+            android:label="@string/app50_menu" />
+        <activity
+            android:name=".App51_UsingPreferences"
+            android:label="@string/app51_menu" />
+        <activity
+            android:name=".App51_PreferencesActivity"
+            android:label="@string/app51_menu2" />
+        <activity
+            android:name=".App52_Json"
+            android:label="@string/app52_menu" />
+        <activity
+            android:name=".App53_DeviceNetwork"
+            android:label="@string/app53_menu" />
+        <activity
+            android:name=".App54_LocalNotifications"
+            android:label="@string/app54_menu" />
+        <activity
+            android:name=".App55_LandscapeUI"
+            android:label="@string/app55_menu" />
+        <activity
+            android:name=".App56_SaveAndRestoreInfo"
+            android:label="@string/app56_menu" />
+        <activity
+            android:name=".App57_PassDataFrom2To1Activity"
+            android:label="@string/app57_menu" />
+        <activity
+            android:name=".App57_SecondActivity"
+            android:label="@string/app57b_menu" />
+        <activity
+            android:name=".App58_Sqlite"
+            android:label="@string/app58_menu" />
+        <activity
+            android:name=".App59_BiggerScreensAndLocalization"
+            android:label="@string/app59_menu" />
+        <activity
+            android:name=".App60_TipAndSavingCalculator"
+            android:label="@string/app60_menu"
+            android:theme="@style/AppTheme.DayNight" />
+        <activity
+            android:name=".App61_AnimalQuiz"
+            android:label="@string/title_activity_app61__animal_quiz"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="#367ABD">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F9ED3A"
+                android:orientation="vertical"
+                android:padding="0dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:text="Let's Make a Directory to Music Folder"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/btnMusicDir"
+                        android:layout_weight="0.4"
+                        android:textSize="14sp"
+                        android:fontFamily="serif-monospace"
+                        android:background="#367ABD"
+                        android:textColor="#EE4035"
+                        android:textStyle="normal|bold"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false" />
+                    <Button
+                        android:text="Let's Make a directory to Downloads Folder"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/btnDownloadDir"
+                        android:layout_weight="0.4"
+                        android:textSize="14sp"
+                        android:fontFamily="serif-monospace"
+                        android:background="#367ABD"
+                        android:textColor="#EE4035"
+                        android:textStyle="normal|bold"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:text="Let's Make a Directory to Documents Folder"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/btnDocumentsFolder"
+                    android:layout_weight="0.5"
+                    android:textSize="14sp"
+                    android:fontFamily="serif-monospace"
+                    android:background="#367ABD"
+                    android:textColor="#EE4035"
+                    android:textStyle="normal|bold"
+                    android:layout_margin="5dp"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:text="Let's Make a Directory to Ringtones Floder"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/btnRingtonesFolder"
+                    android:layout_weight="0.5"
+                    android:textSize="14sp"
+                    android:textStyle="normal|bold"
+                    android:background="#367ABD"
+                    android:textColor="#EE4035"
+                    android:fontFamily="serif-monospace"
+                    android:layout_margin="5dp"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:text="Let's Make a Directory to Podcast Folder"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/btnPodcastFolderFolder"
+                        android:layout_weight="0.5"
+                        android:textSize="14sp"
+                        android:fontFamily="serif-monospace"
+                        android:background="#367ABD"
+                        android:textColor="#EE4035"
+                        android:textStyle="normal|bold"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:text="Let's Make a Directory to Movie's Floder"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/btnMoviesFolder"
+                        android:layout_weight="0.5"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold"
+                        android:background="#367ABD"
+                        android:textColor="#EE4035"
+                        android:fontFamily="serif-monospace"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+
+                <Button
+                    android:text="Let's Make a Directory To Pictures Folder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnPicturesFolder"
+                    android:textSize="16sp"
+                    android:background="#367ABD"
+                    android:textColor="#EE4035"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_margin="5dp"
+                    android:textStyle="normal|bold"
+                    android:textAllCaps="false" />
+                <Button
+                    android:text="Let's Make a Directory To Alarms Folder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnAlarmsFolder"
+                    android:textSize="16sp"
+                    android:background="#367ABD"
+                    android:textColor="#EE4035"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_margin="5dp"
+                    android:textStyle="normal|bold"
+                    android:textAllCaps="false" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textColor="#EE4035"
+                    android:ems="10"
+                    android:id="@+id/edtValue"
+                    android:layout_margin="0dp"
+                    android:background="#fff" />
+
+                <Button
+                    android:text="Save it To Documents Folder in SDCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#EE4035"
+                    android:background="#367ABD"
+                    android:id="@+id/btnSvaeFile"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:textStyle="normal|bold"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#EE4035"
+                    android:id="@+id/txtValue"
+                    android:layout_margin="0dp"
+                    android:background="#fff" />
+
+                <Button
+                    android:text="Retrieve the information from SDCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#367ABD"
+                    android:textColor="#EE4035"
+                    android:id="@+id/btnRetrieveInfo"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:textStyle="normal|bold"
+                    android:textAllCaps="false" />
+
+                <ImageView
+                    android:id="@+id/imgDragon"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/dragon6" />
+
+                <Button
+                    android:text="Allow Access Pictures in SD Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnAllowAccessPictures"
+                    android:textSize="16sp"
+                    android:textStyle="normal|bold"
+                    android:background="#367ABD"
+                    android:textColor="#EE4035"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center_horizontal" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/horizontalScrollView">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:id="@+id/linearLayoutHorizontal43" />
+                </HorizontalScrollView>
+
+                <ImageSwitcher
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/imgSwitcher" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

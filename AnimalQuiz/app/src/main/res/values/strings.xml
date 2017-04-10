@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AnimalQuiz</string>
+    <string name="action_settings">Quiz Settings</string>
+    <string name="question_text">This is Animal %1$d of %2$d</string>
+    <string name="number_of_guesses_title">Number of Guesses</string>
+    <string name="number_of_guesses_description">Show 2,4 or 6 guess options</string>
+    <string name="animal_types_title">Animals</string>
+    <string name="animal_types_description">Types of animals that you can include in the Quiz</string>
+    <string name="choose_background_color">Choose background Color</string>
+    <string name="choose_color_description">Choose one of these colors as the background Color</string>
+    <string name="default_color_black">Black</string>
+    <string name="choose_font">Font for Quiz</string>
+    <string name="choose_font_description">Choose one of these Fonts for Quiz</string>
+    <string name="default_font">Wonderbar Demo.otf</string>
+</resources>

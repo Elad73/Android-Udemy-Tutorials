@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="#844D9E" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#F3A530">
+
+                    <CheckBox
+                        android:text="Boxing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox1"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:textSize="35dp"
+                        android:textColorLink="#844D9E"
+                        android:buttonTint="#844D9E"/>
+                    <CheckBox
+                        android:text="Kick Boxing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox2"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:buttonTint="#844D9E"
+                        android:textSize="35dp" />
+                    <CheckBox
+                        android:text="Judo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox3"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:buttonTint="#844D9E"
+                        android:textSize="35dp" />
+                    <CheckBox
+                        android:text="Aikido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox4"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:buttonTint="#844D9E"
+                        android:textSize="35dp" />
+                    <CheckBox
+                        android:text="Football"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox5"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:buttonTint="#844D9E"
+                        android:textSize="35dp" />
+                    <CheckBox
+                        android:text="Taekwondo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox6"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:textSize="35dp"
+                        android:textColorLink="#844D9E"
+                        android:buttonTint="#844D9E"
+                        android:shadowColor="#844D9E" />
+                    <CheckBox
+                        android:text="Wrestling"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox7"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:buttonTint="#844D9E"
+                        android:textSize="35dp" />
+                    <CheckBox
+                        android:text="Swimming"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox8"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:textColor="#844D9E"
+                        android:buttonTint="#844D9E"
+                        android:textSize="35dp" />
+
+                    <SeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/seekBar"
+                        android:progressTint="#844D9E"
+                        android:thumbTint="#844D9E" />
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:id="@+id/ratingBar"
+                        android:layout_gravity="center_horizontal"
+                        android:progressTint="#56B949" />
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/radioGroup">
+                        <RadioButton
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Android"
+                            android:id="@+id/radioButton1"
+                            android:textColor="#844D9E"
+                            android:textSize="35dp"
+                            android:buttonTint="#844D9E" />
+                        <RadioButton
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="iOS"
+                            android:id="@+id/radioButton2"
+                            android:textColor="#844D9E"
+                            android:textSize="35dp"
+                            android:buttonTint="#844D9E" />
+                        <RadioButton
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Windows Phone"
+                            android:id="@+id/radioButton3"
+                            android:textColor="#844D9E"
+                            android:textSize="35dp"
+                            android:buttonTint="#844D9E" />
+                    </RadioGroup>
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Text Number 1 settings"
+        android:key="CAT_1">
+        <ListPreference
+            android:key="FONT_PATHS_1"
+            android:title="Specify the font for TextView1"
+            android:dialogTitle="Choose one of these fonts"
+            android:entries="@array/font_paths"
+            android:entryValues="@array/font_paths_values"
+            android:defaultValue="fonts/Beyond Wonderland.ttf" />
+
+        <ListPreference
+            android:key="FONT_SIZE_1"
+            android:title="Specify the size of your fonts for TextView1"
+            android:dialogTitle="Choose one of these sizes"
+            android:entries="@array/font_sizes"
+            android:entryValues="@array/font_sizes_values"
+            android:defaultValue="10" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Text Number 2 settings"
+        android:key="CAT_2">
+        <ListPreference
+            android:key="FONT_PATHS_2"
+            android:title="Specify the font for TextView2"
+            android:dialogTitle="Choose one of these fonts"
+            android:entries="@array/font_paths"
+            android:entryValues="@array/font_paths_values"
+            android:defaultValue="fonts/Beyond Wonderland.ttf" />
+
+        <ListPreference
+            android:key="FONT_SIZE_2"
+            android:title="Specify the size of your fonts for TextView2"
+            android:dialogTitle="Choose one of these sizes"
+            android:entries="@array/font_sizes"
+            android:entryValues="@array/font_sizes_values"
+            android:defaultValue="10" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Text Number 3 settings"
+        android:key="CAT_3">
+        <ListPreference
+            android:key="FONT_PATHS_3"
+            android:title="Specify the font for TextView3"
+            android:dialogTitle="Choose one of these fonts"
+            android:entries="@array/font_paths"
+            android:entryValues="@array/font_paths_values"
+            android:defaultValue="fonts/Beyond Wonderland.ttf" />
+
+        <ListPreference
+            android:key="FONT_SIZE_3"
+            android:title="Specify the size of your fonts for TextView3"
+            android:dialogTitle="Choose one of these sizes"
+            android:entries="@array/font_sizes"
+            android:entryValues="@array/font_sizes_values"
+            android:defaultValue="10" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

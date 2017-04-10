@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/app48_settings"
+        android:title="@string/app48_settings"/>
+    <item
+        android:id="@+id/app48_settings2"
+        android:title="@string/app48_settings2"/>
+    <item
+        android:id="@+id/app48_settings3"
+        android:title="@string/app48_settings3"/>
+    <item
+        android:id="@+id/app48_settings4"
+        android:title="@string/app48_settings4"/>
+</menu>

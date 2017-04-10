@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app45_access_phone_services"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.eladron.androidappdevforbeginners.App45_AccessPhoneServices"
+    android:background="#56B949">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="#F3A530">
+
+        <Button
+            android:text="Let's open Udemy.com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:id="@+id/btnOpenUdemy_45"
+            android:background="#367ABD"
+            android:textColor="#EE4035"
+            android:layout_margin="10dp" />
+        <Button
+            android:text="Let's search Google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:id="@+id/btnSearchGoogle_45"
+            android:background="#367ABD"
+            android:textColor="#EE4035"
+            android:layout_margin="10dp" />
+        <Button
+            android:text="Let's call Someone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:id="@+id/btnCall_45"
+            android:background="#367ABD"
+            android:textColor="#EE4035"
+            android:layout_margin="10dp" />
+        <Button
+            android:text="Let's access the Dial Pad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:id="@+id/btnAccessDialPad_45"
+            android:background="#367ABD"
+            android:textColor="#EE4035"
+            android:layout_margin="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:background="#367ABD"
+            android:textColor="#EE4035"
+            android:gravity="center"
+            android:id="@+id/edtPhoneNumber_45"
+            android:layout_margin="10dp"
+            android:hint="Enter Phone Number" />
+
+    </LinearLayout>
+
+</RelativeLayout>

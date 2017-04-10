@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Android App Dev For Beginners</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_menu">Applications Menu</string>
+    <string name="app34_menu">App 34 - Customized List View</string>
+    <string name="app34_animal_name">Name of the Animal:</string>
+    <string name="app35_menu">App 35 - Expandable List View</string>
+    <string name="app36_menu">App 36 - Grid View</string>
+    <string name="app37_menu">App 37 - Gallery and Scroll View</string>
+    <string name="app38_menu">App 38 - Image Switcher View</string>
+    <string name="app39_menu">App 39 - Flip Image</string>
+    <string name="app40_menu">App 40 - Text Switcher</string>
+    <string name="app41_menu">App 41 - CheckBox, RadioButton, RatingBar and Seekbar</string>
+    <string name="app42_menu">App42 - Contacts</string>
+    <string name="app43_menu">App43 - SDCard and Permissions</string>
+    <string name="UnderConstruction">Under Construction</string>
+    <string name="app44_menu">App44 - Sending info from 1 Activity to Other</string>
+    <string name="app44_menu2">App44 - Received activity</string>
+    <string name="app45_menu">App45 - Access Phone Services</string>
+    <string name="app46_menu">App46 - Using TabHost</string>
+    <string name="app46_tab1_menu">App46 - Tab1 activity</string>
+    <string name="app46_tab2_menu">App46 - Tab2 activity</string>
+    <string name="app46_tab3_menu">App46 - Tab3 Activity</string>
+    <string name="app46_menu2">App46 - Another Type of TabHost</string>
+    <string name="app47_menu">App47 - Fonts</string>
+    <string name="app48_menu">App48 - Using Menu</string>
+    <string name="app48_settings">Settings Number 1</string>
+    <string name="app48_settings2">Settings Number 2</string>
+    <string name="app48_settings3">Settings Number 3</string>
+    <string name="app48_settings4">Settings Number 4</string>
+    <string name="app49_menu">Download Image From Internet</string>
+    <string name="app50_menu">Shared Preferences</string>
+    <string name="app51_menu">Using Preferences</string>
+    <string name="app51_settings">Settings</string>
+    <string name="app51_menu2">Preferences Activity</string>
+    <string name="app52_menu">Using JSON</string>
+    <string name="app53_menu">Device Network</string>
+    <string name="app54_menu">Local Notifications</string>
+    <string name="app55_menu">Landscape UI</string>
+    <string name="app55_txtView">This is text</string>
+    <string name="app55_btn">This is Button</string>
+    <string name="app55_chx">This is CheckBox</string>
+    <string name="app56_menu"><![CDATA[Save & Restore Info]]></string>
+    <string name="app57_menu">Pass Data From Second to First</string>
+    <string name="app57b_menu">Second Activity</string>
+    <string name="app58_menu">Master SQLite</string>
+    <string name="app59_menu">Bigger Screens and Localization</string>
+    <string name="app60_menu">Tip and Saving Calculator</string>
+    <string name="app60_enter_amount">Enter Bill Amount...</string>
+    <string name="app60_tip_percentage">25%</string>
+    <string name="app60_tip_value">Tip</string>
+    <string name="app60_total_value">Total</string>
+    <string name="app60_saving_percent">50%</string>
+    <string name="app60_total_money_saved">Movey Saved</string>
+
+    <string-array name="font_sizes">
+        <item>25dp</item>
+        <item>40dp</item>
+        <item>45dp</item>
+        <item>50dp</item>
+        <item>55dp</item>
+        <item>60dp</item>
+        <item>65dp</item>
+        <item>70dp</item>
+    </string-array>
+
+    <string-array name="font_sizes_values">
+        <item>25</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+    </string-array>
+
+    <string-array name="font_paths">
+        <item>Beyond Wonderland</item>
+        <item>jigsaw trouserdrop</item>
+        <item>Precious</item>
+    </string-array>
+
+    <string-array name="font_paths_values">
+        <item>fonts/Beyond Wonderland.ttf</item>
+        <item>fonts/jigsaw trouserdrop.ttf</item>
+        <item>fonts/Precious.ttf</item>
+    </string-array>
+    <string name="title_activity_app61__animal_quiz">App61_AnimalQuiz</string>
+
+</resources>
