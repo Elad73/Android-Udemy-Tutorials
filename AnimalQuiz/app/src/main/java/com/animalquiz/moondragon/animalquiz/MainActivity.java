@@ -1,5 +1,7 @@
 package com.animalquiz.moondragon.animalquiz;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         PreferenceManager.setDefaultValues(MainActivity.this, R.xml.quiz_prefereces, false);
 
+        PreferenceManager.getDefaultSharedPreferences(MainActivity.this).registerOnSharedPreferenceChangeListener(settingsChangeListener);
+
     }
 
     @Override
@@ -50,13 +54,18 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
+        Intent preferenceIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(preferenceIntent);
         return super.onOptionsItemSelected(item);
     }
+
+    private SharedPreferences.OnSharedPreferenceChangeListener settingsChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+
+
+        }
+    };
 }
