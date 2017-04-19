@@ -1,6 +1,11 @@
 package com.animalquiz.moondragon.animalquiz;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,7 +38,7 @@ public class MainActivityFragment extends Fragment {
     private int          numberOfRightAnswers;
     private int          numberOfAnimalsGuessRows;
     private SecureRandom secureRandomNumber;
-    private Handler      handler2;
+    private Handler      handler;
     private Animation    wrongAnswerAnimation;
 
     private LinearLayout animalQuizLinearLayout;
@@ -53,7 +58,7 @@ public class MainActivityFragment extends Fragment {
         allAnimalsNamesList  = new ArrayList<>();
         animalsNamesQuizList = new ArrayList<>();
         secureRandomNumber   = new SecureRandom();
-        handler2             = new Handler();
+        handler              = new Handler();
 
         wrongAnswerAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.wrong_answer_animation);
         wrongAnswerAnimation.setRepeatCount(1);
@@ -81,5 +86,83 @@ public class MainActivityFragment extends Fragment {
         return view;
     }
 
+    private View.OnClickListener btnGuessListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Button btnGuess = ((Button) view);
+            String guessValue = btnGuess.getText().toString();
+            String answerValue = getTheExactAnimalName(correctAnimalsAnswer);
+            ++numberOfAllGuesses;
 
+            if (guessValue.equals(answerValue)) {
+                ++numberOfRightAnswers;
+                txtAnswer.setText(answerValue + "!" + " RIGHT");
+
+                disableQuizButtons();
+
+                if (numberOfRightAnswers == NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ) {
+                    displaySummaryAndResetDialog();
+                } else {
+                    displayNextQuestionAnimation();
+                }
+
+            } else {
+                imgAnimal.startAnimation(wrongAnswerAnimation);
+
+                txtAnswer.setText(R.string.wrong_answer_message);
+                btnGuess.setEnabled(false);
+            }
+        }
+    };
+
+    private void displaySummaryAndResetDialog() {
+        DialogFragment animalQuizResults = new DialogFragment() {
+
+            @NonNull
+            @Override
+            public Dialog onCreateDialog(Bundle savedInstanceState) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(getString(R.string.result_string_value, numberOfAllGuesses,
+                        (1000/ (double) numberOfAllGuesses)));
+                builder.setPositiveButton(R.string.reset_animal_quiz, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        resetAnimalQuiz();
+                    }
+                });
+
+                return builder.create();
+            }
+        };
+
+        animalQuizResults.setCancelable(false);
+        animalQuizResults.show(getFragmentManager(), "AnimalQuizResults");
+    }
+
+    private void displayNextQuestionAnimation() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                animateAnimalQuiz(true);
+            }
+        }, 1000); // 1000 milliseconds for 1 second delay
+    }
+
+    private String getTheExactAnimalName(String animalName) {
+        return animalName.substring(animalName.indexOf('-') + 1).replace('_',' ');
+    }
+
+    private void disableQuizButtons() {
+        for (int row=0; row < numberOfAnimalsGuessRows; row++) {
+            LinearLayout guessRowLinearLayout = rowsOfGuessButtonsInAnimalQuiz[row];
+
+            for (int buttonIndex=0; buttonIndex < guessRowLinearLayout.getChildCount(); buttonIndex++) {
+                guessRowLinearLayout.getChildAt(buttonIndex).setEnabled(false);
+            }
+        }
+    }
+
+    private void resetAnimalQuiz() {
+
+    }
 }
