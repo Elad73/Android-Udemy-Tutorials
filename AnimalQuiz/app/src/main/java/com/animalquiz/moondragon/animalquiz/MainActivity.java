@@ -13,7 +13,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static final String GEUSSES = "settings_numberOfGuesses";
+    public static final String GUESSES = "settings_numberOfGuesses";
     public static final String ANIMALS_TYPES = "settings_animalsType";
     public static final String QUIZ_BACKGROUND_COLOR = "settings_quizBackgroundColor";
     public static final String QUIZ_FONT = "settings_quizFont";
@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     static Typeface chinkfive;
     static Typeface fontleroybrown;
     static Typeface wonderbarDemo;
+
+    MainActivityFragment myAnimalQuizFragment;
 
     //testing commit to github through android studio
 
