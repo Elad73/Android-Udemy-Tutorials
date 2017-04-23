@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -144,7 +145,8 @@ public class MainActivityFragment extends Fragment {
             int numOfAllGuesses = getArguments().getInt("NumOfAllGuesses");
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(R.string.summary_dialog_title);
-            builder.setMessage(getString(R.string.result_string_value, numOfAllGuesses,
+            Resources res = getResources();
+            builder.setMessage(res.getQuantityString(R.plurals.result_string_value, numOfAllGuesses, numOfAllGuesses,
                     (1000/ (double) numOfAllGuesses)));
             builder.setPositiveButton(R.string.reset_animal_quiz, new DialogInterface.OnClickListener() {
                 @Override

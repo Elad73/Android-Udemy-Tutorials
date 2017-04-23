@@ -13,7 +13,10 @@
     <string name="choose_font_description">Choose one of these Fonts for Quiz</string>
     <string name="default_font">Wonderbar Demo.otf</string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="result_string_value">%1$d number of guesses, and %2$.02f%% correct</string>
+    <plurals name="result_string_value">
+        <item quantity="one">%1$d guess, and %2$.02f%% correct</item>
+        <item quantity="other">%1$d number of guesses, and %2$.02f%% correct</item>
+    </plurals>
     <string name="reset_animal_quiz">RESET THE ANIMAL QUIZ</string>
     <string name="wrong_answer_message">No</string>
     <string name="default_animal_type">Wild_Animals</string>
