@@ -23,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isSettingsChanged = false;
 
-    static Typeface chinkfive;
-    static Typeface fontleroybrown;
-    static Typeface wonderbarDemo;
+    static Typeface boyzRGrossNF;
+    static Typeface chockABlockNF;
+    static Typeface chubbyDotty;
+    static Typeface emilysCandyRegular;
+    static Typeface loveLetters;
 
     MainActivityFragment myAnimalQuizFragment;
 
@@ -39,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        chinkfive = Typeface.createFromAsset(getAssets(), "fonts/Chunkfive.otf");
-        fontleroybrown = Typeface.createFromAsset(getAssets(), "fonts/FontleroyBrown.ttf");
-        wonderbarDemo = Typeface.createFromAsset(getAssets(), "fonts/Wonderbar Demo.otf");
+        boyzRGrossNF = Typeface.createFromAsset(getAssets(), "fonts/BoyzRGrossNF.ttf");
+        chubbyDotty = Typeface.createFromAsset(getAssets(), "fonts/Chubby Dotty.ttf");
+        emilysCandyRegular = Typeface.createFromAsset(getAssets(), "fonts/EmilysCandy-Regular.ttf");
+        loveLetters = Typeface.createFromAsset(getAssets(), "fonts/Love Letters.ttf");
 
         PreferenceManager.setDefaultValues(MainActivity.this, R.xml.quiz_prefereces, false);
 

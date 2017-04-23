@@ -26,14 +26,16 @@
     </string-array>
 
     <string-array name="fonts">
-        <item>ChunkFive</item>
-        <item>FontleroyBrown</item>
-        <item>Wonderbar Demo</item>
+        <item>EmilysCandy-Regular</item>
+        <item>BoyzRGrossNF</item>
+        <item>Chubby Dotty</item>
+        <item>Love Letters</item>
     </string-array>
 
     <string-array name="fonts_values">
-        <item>Chunkfive.otf</item>
-        <item>FontleroyBrown.ttf</item>
-        <item>Wonderbar Demo.otf</item>
+        <item>EmilysCandy-Regular.ttf</item>
+        <item>BoyzRGrossNF.ttf</item>
+        <item>Chubby Dotty.ttf</item>
+        <item>Love Letters.ttf</item>
     </string-array>
 </resources>

@@ -376,18 +376,26 @@ public class MainActivityFragment extends Fragment {
     public void modifyQuizFont(SharedPreferences sharedPreferences) {
         String fontStringValue = sharedPreferences.getString(MainActivity.QUIZ_FONT, null);
         Typeface modifiedFont;
+        float fontSize = 24;
 
         switch (fontStringValue) {
 
-            case "FontleroyBrown.ttf":
-                modifiedFont = MainActivity.fontleroybrown;
+            case "BoyzRGrossNF.ttf":
+                modifiedFont = MainActivity.boyzRGrossNF;
+                fontSize = 34;
                 break;
-            case "Wonderbar Demo.otf":
-                modifiedFont = MainActivity.wonderbarDemo;
+            case "Chubby Dotty.ttf":
+                modifiedFont = MainActivity.chubbyDotty;
+                fontSize = 30;
                 break;
-            case "Chunkfive.otf":
+            case "Love Letters.ttf":
+                modifiedFont = MainActivity.loveLetters;
+                fontSize = 36;
+                break;
+            case "EmilysCandy-Regular.ttf":
             default:
-                modifiedFont = MainActivity.chinkfive;
+                modifiedFont = MainActivity.emilysCandyRegular;
+                fontSize = 24;
                 break;
         }
 
@@ -395,6 +403,7 @@ public class MainActivityFragment extends Fragment {
             for (int column=0; column < row.getChildCount(); column++) {
                 Button button = (Button) row.getChildAt(column);
                 button.setTypeface(modifiedFont);
+                button.setTextSize(fontSize);
             }
         }
     }

@@ -11,7 +11,7 @@
     <string name="default_color_black">Black</string>
     <string name="choose_font">Font for Quiz</string>
     <string name="choose_font_description">Choose one of these Fonts for Quiz</string>
-    <string name="default_font">Wonderbar Demo.otf</string>
+    <string name="default_font">EmilysCandy-Regular.ttf</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <plurals name="result_string_value">
         <item quantity="one">%1$d guess, and %2$.02f%% correct</item>
