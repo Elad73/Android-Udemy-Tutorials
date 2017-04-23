@@ -100,6 +100,7 @@
         android:layout_marginBottom="@dimen/margin_value"
         android:layout_marginLeft="@dimen/margin_left_value"
         android:layout_marginRight="@dimen/margun_rught_value"
+        android:contentDescription="@string/animal_image_content_desc"
         android:scaleType="fitCenter"/>
 
     <TextView

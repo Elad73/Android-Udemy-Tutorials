@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
 
         PreferenceManager.getDefaultSharedPreferences(MainActivity.this).registerOnSharedPreferenceChangeListener(settingsChangeListener);
 
+        myAnimalQuizFragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.animalQuizFragment);
+
+        myAnimalQuizFragment.modifyAnimalGuessRows(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
+        myAnimalQuizFragment.modifyTypeOfAnimalsInQuiz(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
+        myAnimalQuizFragment.modifyQuizFont(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
+        myAnimalQuizFragment.modifyBackgroundColor(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
+        myAnimalQuizFragment.resetAnimalQuiz();
+        isSettingsChanged = false;
+
+
     }
 
     @Override
@@ -68,8 +81,39 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
+            isSettingsChanged = true;
 
+            switch (key) {
+                case GUESSES:
+                    myAnimalQuizFragment.modifyAnimalGuessRows(sharedPreferences);
+                    myAnimalQuizFragment.resetAnimalQuiz();
+                    break;
+                case ANIMALS_TYPES:
+                    Set<String> animalTypes = sharedPreferences.getStringSet(ANIMALS_TYPES, null);
 
+                    if (animalTypes != null && animalTypes.size() > 0) {
+                        myAnimalQuizFragment.modifyTypeOfAnimalsInQuiz(sharedPreferences);
+                        myAnimalQuizFragment.resetAnimalQuiz();
+                    }else {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        animalTypes.add(getString(R.string.default_animal_type));
+                        editor.putStringSet(ANIMALS_TYPES, animalTypes);
+                        editor.apply();
+
+                        Toast.makeText(MainActivity.this, R.string.default_animalType_toast_message, Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case QUIZ_FONT:
+                    myAnimalQuizFragment.modifyQuizFont(sharedPreferences);
+                    myAnimalQuizFragment.resetAnimalQuiz();
+                    break;
+                case QUIZ_BACKGROUND_COLOR:
+                    myAnimalQuizFragment.modifyBackgroundColor(sharedPreferences);
+                    myAnimalQuizFragment.resetAnimalQuiz();
+                    break;
+            }
+
+            Toast.makeText(MainActivity.this, R.string.setting_Changed_toast_message, Toast.LENGTH_SHORT).show();
         }
     };
 }

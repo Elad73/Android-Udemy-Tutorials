@@ -8,10 +8,9 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -25,14 +24,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -116,7 +113,7 @@ public class MainActivityFragment extends Fragment {
                 disableQuizButtons();
 
                 if (numberOfRightAnswers == NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ) {
-                    displaySummaryAndResetDialog();
+                    displayStaticSummaryAndResetDialog();
                 } else {
                     displayNextQuestionAnimation();
                 }
@@ -130,13 +127,55 @@ public class MainActivityFragment extends Fragment {
         }
     };
 
-    private void displaySummaryAndResetDialog() {
-        DialogFragment animalQuizResults = new DialogFragment() {
 
+    public static class MyAlertDialogFragment extends DialogFragment {
+
+        public static MyAlertDialogFragment newInstance(int numOfAllGuesses) {
+
+            MyAlertDialogFragment frag = new MyAlertDialogFragment();
+            Bundle args = new Bundle();
+            args.putInt("NumOfAllGuesses", numOfAllGuesses);
+            frag.setArguments(args);
+            return frag;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            int numOfAllGuesses = getArguments().getInt("NumOfAllGuesses");
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.summary_dialog_title);
+            builder.setMessage(getString(R.string.result_string_value, numOfAllGuesses,
+                    (1000/ (double) numOfAllGuesses)));
+            builder.setPositiveButton(R.string.reset_animal_quiz, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //resetAnimalQuiz();
+                    ((MainActivityFragment) getFragmentManager().findFragmentById(R.id.animalQuizFragment)).resetAnimalQuiz();
+                }
+            });
+
+            return builder.create();
+        }
+
+    }
+
+    private void displayStaticSummaryAndResetDialog() {
+
+        MyAlertDialogFragment animalQuizResults = MyAlertDialogFragment.newInstance(numberOfAllGuesses);
+        animalQuizResults.setCancelable(false);
+        animalQuizResults.show(getFragmentManager(), "AnimalQuizResults");
+    }
+
+   /* THIS was an anonymous DialogFragment class which was not static and CRASHED
+
+    private void displaySummaryAndResetDialog() {
+
+        DialogFragment animalQuizResults = new DialogFragment() {
             @NonNull
             @Override
             public Dialog onCreateDialog(Bundle savedInstanceState) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.summary_dialog_title);
                 builder.setMessage(getString(R.string.result_string_value, numberOfAllGuesses,
                         (1000/ (double) numberOfAllGuesses)));
                 builder.setPositiveButton(R.string.reset_animal_quiz, new DialogInterface.OnClickListener() {
@@ -152,7 +191,8 @@ public class MainActivityFragment extends Fragment {
 
         animalQuizResults.setCancelable(false);
         animalQuizResults.show(getFragmentManager(), "AnimalQuizResults");
-    }
+
+    }*/
 
     private void displayNextQuestionAnimation() {
         handler.postDelayed(new Runnable() {
@@ -177,44 +217,6 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
-    private void resetAnimalQuiz() {
-
-        AssetManager assets = getActivity().getAssets();
-        allAnimalsNamesList.clear();
-
-        try {
-            for (String animalType : animalTypesInQuiz) {
-                String[] animalsImagePathsInQuiz = assets.list(animalType);
-
-                for (String animalImagePathsInQuiz : animalsImagePathsInQuiz) {
-                    allAnimalsNamesList.add(animalImagePathsInQuiz.replace(".png", ""));
-                }
-            }
-        }
-        catch (IOException ioEx) {
-            Log.e("AnimalQuiz", "Error", ioEx);
-        }
-
-        numberOfRightAnswers = 0;
-        numberOfAllGuesses   = 0;
-        animalsNamesAttendingInQuizList.clear();
-
-        int counter = 1;
-        int numberOfAvailableAnimals = allAnimalsNamesList.size();
-
-        while (counter <= NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ) {
-            int randomIndex = secureRandomNumber.nextInt(numberOfAvailableAnimals);
-            String animalName = allAnimalsNamesList.get(randomIndex);
-
-            if (!animalsNamesAttendingInQuizList.contains(animalName)) {
-                animalsNamesAttendingInQuizList.add(animalName);
-                ++counter;
-            }
-        }
-
-        showNextAnimal();
-    }
-
     private void animateAnimalQuiz(boolean animateOutAnimalImage) {
         //incase we are showing the first image, there is no need for an animation
         if (numberOfRightAnswers == 0) {
@@ -232,37 +234,41 @@ public class MainActivityFragment extends Fragment {
 
         Animator animator;
 
-        if (animateOutAnimalImage) {
-            animator = ViewAnimationUtils.createCircularReveal(animalQuizLinearLayout, xBottomRight, yBottomRight, radius, 0);
+        //since "createCircularReveal" works from sdk 21 and up.
+        //otherwise, there will not be an animation
+        if (Build.VERSION.SDK_INT >= 21 ) {
+            if (animateOutAnimalImage) {
+                animator = ViewAnimationUtils.createCircularReveal(animalQuizLinearLayout, xBottomRight, yBottomRight, radius, 0);
 
-            animator.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
+                animator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
 
-                }
+                    }
 
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    showNextAnimal();
-                }
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        showNextAnimal();
+                    }
 
-                @Override
-                public void onAnimationCancel(Animator animation) {
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
 
-                }
+                    }
 
-                @Override
-                public void onAnimationRepeat(Animator animation) {
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
 
-                }
-            });
-        } else {
-            animator = ViewAnimationUtils.createCircularReveal(animalQuizLinearLayout, xTopLeft, yTopLeft, 0, radius);
+                    }
+                });
+            } else {
+                animator = ViewAnimationUtils.createCircularReveal(animalQuizLinearLayout, xTopLeft, yTopLeft, 0, radius);
 
+            }
+
+            animator.setDuration(700);
+            animator.start();
         }
-
-        animator.setDuration(700);
-        animator.start();
     }
 
     private void showNextAnimal() {
@@ -307,9 +313,48 @@ public class MainActivityFragment extends Fragment {
         LinearLayout randomRow = rowsOfGuessButtonsInAnimalQuiz[row];
         String correctAnimalImageName = getTheExactAnimalName(correctAnimalName);
         ((Button) randomRow.getChildAt(column)).setText(correctAnimalImageName);
+
     }
 
-    public void ModifyAnimalGuessRows(SharedPreferences sharedPreferences) {
+    public void resetAnimalQuiz() {
+
+        AssetManager assets = getActivity().getAssets();
+        allAnimalsNamesList.clear();
+
+        try {
+            for (String animalType : animalTypesInQuiz) {
+                String[] animalsImagePathsInQuiz = assets.list(animalType);
+
+                for (String animalImagePathsInQuiz : animalsImagePathsInQuiz) {
+                    allAnimalsNamesList.add(animalImagePathsInQuiz.replace(".png", ""));
+                }
+            }
+        }
+        catch (IOException ioEx) {
+            Log.e("AnimalQuizLog", "Error", ioEx);
+        }
+
+        numberOfRightAnswers = 0;
+        numberOfAllGuesses   = 0;
+        animalsNamesAttendingInQuizList.clear();
+
+        int counter = 1;
+        int numberOfAvailableAnimals = allAnimalsNamesList.size();
+
+        while (counter <= NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ) {
+            int randomIndex = secureRandomNumber.nextInt(numberOfAvailableAnimals);
+            String animalName = allAnimalsNamesList.get(randomIndex);
+
+            if (!animalsNamesAttendingInQuizList.contains(animalName)) {
+                animalsNamesAttendingInQuizList.add(animalName);
+                ++counter;
+            }
+        }
+
+        showNextAnimal();
+    }
+
+    public void modifyAnimalGuessRows(SharedPreferences sharedPreferences) {
         final String NUMBER_OF_GUESS_OPTIONS = sharedPreferences.getString(MainActivity.GUESSES, null);
         numberOfAnimalsGuessRows = Integer.parseInt(NUMBER_OF_GUESS_OPTIONS) / 2;
 
@@ -322,11 +367,11 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
-    public void ModifyTypeOfAnimalsInQuiz(SharedPreferences sharedPreferences) {
+    public void modifyTypeOfAnimalsInQuiz(SharedPreferences sharedPreferences) {
         animalTypesInQuiz = sharedPreferences.getStringSet(MainActivity.ANIMALS_TYPES, null);
     }
 
-    public void ModifyQuizFont (SharedPreferences sharedPreferences) {
+    public void modifyQuizFont(SharedPreferences sharedPreferences) {
         String fontStringValue = sharedPreferences.getString(MainActivity.QUIZ_FONT, null);
         Typeface modifiedFont;
 
@@ -352,7 +397,7 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
-    public void ModifyBackgroundColor(SharedPreferences sharedPreferences) {
+    public void modifyBackgroundColor(SharedPreferences sharedPreferences) {
         String backgroundColor = sharedPreferences.getString(MainActivity.QUIZ_BACKGROUND_COLOR, null);
 
         int modifiedBackgroundColor;
