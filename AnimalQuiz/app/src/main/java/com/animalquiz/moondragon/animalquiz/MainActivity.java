@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean isSettingsChanged = false;
 
     static Typeface boyzRGrossNF;
-    static Typeface chockABlockNF;
     static Typeface chubbyDotty;
     static Typeface emilysCandyRegular;
     static Typeface loveLetters;
