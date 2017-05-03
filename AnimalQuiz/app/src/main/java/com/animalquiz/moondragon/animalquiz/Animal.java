@@ -6,7 +6,7 @@ import android.preference.PreferenceFragment;
  * Created by Elad on 24/04/2017.
  */
 
-public abstract class Animal {
+public class Animal {
 
     private String _name;
     private String _imagePath;
@@ -15,12 +15,16 @@ public abstract class Animal {
     private  String _objectKey;
 
 
-
-    public Animal(String imagePath, String soundPath) {
+   /* public Animal(String imagePath, String soundPath) {
         _imagePath = imagePath;
         _soundPath = soundPath;
         _name = extractNameFromPath();
         _objectKey = setKey();
+    }*/
+
+    public Animal(String animalName, String animalType) {
+        _name = animalName;
+        _type = animalType;
     }
 
     public String getKey() { return  _objectKey;}
@@ -56,7 +60,7 @@ public abstract class Animal {
     }
 
     public String getAssetsImageFolder() {
-        return getImagePath().substring(0, getImagePath().indexOf('-'));
+        return getImagePath().substring(0, getImagePath().indexOf('/'));
     }
 }
 

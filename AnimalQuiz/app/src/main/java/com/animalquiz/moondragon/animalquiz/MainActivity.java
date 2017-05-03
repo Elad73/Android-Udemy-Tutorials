@@ -51,11 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         myAnimalQuizFragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.animalQuizFragment);
 
-        myAnimalQuizFragment.modifyAnimalGuessRows(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
-        myAnimalQuizFragment.modifyTypeOfAnimalsInQuiz(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
-        myAnimalQuizFragment.modifyQuizFont(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
-        myAnimalQuizFragment.modifyBackgroundColor(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
-        myAnimalQuizFragment.resetAnimalQuiz();
+        myAnimalQuizFragment.initializeFragment(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
         isSettingsChanged = false;
 
 
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (key) {
                 case GUESSES:
-                    myAnimalQuizFragment.modifyAnimalGuessRows(sharedPreferences);
+                    myAnimalQuizFragment.loadRoundGuessRows(sharedPreferences);
                     myAnimalQuizFragment.resetAnimalQuiz();
                     break;
                 case ANIMALS_TYPES:

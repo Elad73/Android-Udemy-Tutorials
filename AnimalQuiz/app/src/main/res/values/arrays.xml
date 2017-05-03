@@ -12,8 +12,8 @@
     </string-array>
 
     <string-array name="type_of_animal_values">
-        <item>Wild_Animals</item>
-        <item>Tame_Animals</item>
+        <item>Wild</item>
+        <item>Tame</item>
     </string-array>
 
     <string-array name="colors">

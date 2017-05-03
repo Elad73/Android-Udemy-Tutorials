@@ -31,12 +31,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 
@@ -47,15 +44,6 @@ public class MainActivityFragment extends Fragment {
 
     private static final int NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ = 10;
 
-    private HashMap<String, Animal> hmAllAnimals;
-    private List<String>            lsShuffledAnimalKeys;
-    private List<String> animalsNamesAttendingInQuizList;
-    private Set<String>  animalTypesInQuiz;
-    private Animal       correctAnimal;
-
-    private int          numberOfAllGuesses;
-    private int          numberOfRightAnswers;
-    private int          numberOfAnimalsGuessRows;
     private SecureRandom secureRandomNumber;
     private Handler      handler;
     private Animation    wrongAnswerAnimation;
@@ -66,6 +54,8 @@ public class MainActivityFragment extends Fragment {
     private LinearLayout[] rowsOfGuessButtonsInAnimalQuiz;
     private TextView     txtAnswer;
 
+    private QuizData     quizData;
+
     public MainActivityFragment() {
     }
 
@@ -74,9 +64,7 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_main, container, false);
 
-        hmAllAnimals = new HashMap<>();
-
-        animalsNamesAttendingInQuizList = new ArrayList<>();
+        quizData = new QuizData();
         secureRandomNumber   = new SecureRandom();
         handler              = new Handler();
 
@@ -97,11 +85,11 @@ public class MainActivityFragment extends Fragment {
 
                 Button btnGuess = (Button) row.getChildAt(column);
                 btnGuess.setOnClickListener(btnGuessListener);
-                btnGuess.setTextSize(24);
+                btnGuess.setTextSize(quizData.getDefaultTextSize());
             }
         }
 
-        txtQuestionNumber.setText(getString(R.string.question_text, 1, NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ));
+        txtQuestionNumber.setText(getString(R.string.question_text, 1, quizData.getNumberOfAnimalsIncludedInRound()));
 
         return view;
     }
@@ -111,16 +99,17 @@ public class MainActivityFragment extends Fragment {
         public void onClick(View view) {
             Button btnGuess = ((Button) view);
             String guessValue = btnGuess.getText().toString();
-            String answerValue =  correctAnimal.getName();
-            ++numberOfAllGuesses;
+            String answerValue =  quizData.getCurrentRightAnswer().getName();
+            quizData.incrementRoundAttempts();
 
             if (guessValue.equals(answerValue)) {
-                ++numberOfRightAnswers;
+                //++numberOfRightAnswers;
+                quizData.incrementSuccessfullAttempts();
                 txtAnswer.setText(answerValue + "!" + " RIGHT");
 
                 disableQuizButtons();
 
-                if (numberOfRightAnswers == NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ) {
+                if (quizData.getNumberOfSuccessfulAnswers() == NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ) {
                     displayStaticSummaryAndResetDialog();
                 } else {
                     displayNextQuestionAnimation();
@@ -169,15 +158,10 @@ public class MainActivityFragment extends Fragment {
 
     private void displayStaticSummaryAndResetDialog() {
 
-        MyAlertDialogFragment animalQuizResults = MyAlertDialogFragment.newInstance(numberOfAllGuesses);
+        MyAlertDialogFragment animalQuizResults = MyAlertDialogFragment.newInstance(quizData.getNumberOfGuessesInRound());
         animalQuizResults.setCancelable(false);
         animalQuizResults.show(getFragmentManager(), "AnimalQuizResults");
     }
-
-    private void shuffleAnimalKeys() {
-        lsShuffledAnimalKeys = new ArrayList<String>(hmAllAnimals.keySet());
-        Collections.shuffle(lsShuffledAnimalKeys);
-   }
 
     private void displayNextQuestionAnimation() {
         handler.postDelayed(new Runnable() {
@@ -189,7 +173,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void disableQuizButtons() {
-        for (int row=0; row < numberOfAnimalsGuessRows; row++) {
+        for (int row=0; row < quizData.getNumberOfGuessesRowsInRound(); row++) {
             LinearLayout guessRowLinearLayout = rowsOfGuessButtonsInAnimalQuiz[row];
 
             for (int buttonIndex=0; buttonIndex < guessRowLinearLayout.getChildCount(); buttonIndex++) {
@@ -200,7 +184,7 @@ public class MainActivityFragment extends Fragment {
 
     private void animateAnimalQuiz(boolean animateOutAnimalImage) {
         //incase we are showing the first image, there is no need for an animation
-        if (numberOfRightAnswers == 0) {
+        if (quizData.getNumberOfSuccessfulAnswers() == 0) {
             return;
         }
 
@@ -253,15 +237,14 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void showNextAnimal() {
-        String nextAnimalKey = lsShuffledAnimalKeys.remove(0);
-        correctAnimal = hmAllAnimals.get(nextAnimalKey);
+        Animal correctAnimal = quizData.getNextAnimalInRound();
         txtAnswer.setText("");
 
-        txtQuestionNumber.setText(getString(R.string.question_text, (numberOfRightAnswers + 1), NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ));
+        txtQuestionNumber.setText(getString(R.string.question_text, (quizData.getNumberOfSuccessfulAnswers() + 1), quizData.getNumberOfAnimalsIncludedInRound()));
         String animalType = correctAnimal.getType();
 
         AssetManager assets = getActivity().getAssets();
-        try (InputStream stream = assets.open(correctAnimal.getAssetsImageFolder() + '/' + correctAnimal.getImagePath())) {
+        try (InputStream stream = assets.open(correctAnimal.getImagePath())) {
             Drawable animalImage = Drawable.createFromStream(stream, correctAnimal.getType());
             imgAnimal.setImageDrawable(animalImage);
 
@@ -271,93 +254,46 @@ public class MainActivityFragment extends Fragment {
             Log.e("AnimalQuiz", "There is an error Getting" + correctAnimal.getImagePath(), ioEx);
         }
 
-        hmAllAnimals.remove(correctAnimal.getKey());
-        shuffleAnimalKeys();
+        List<String> currentWrongGuesses = quizData.getCurrentWrongGuesses();
 
-        for (int row = 0; row < numberOfAnimalsGuessRows; row++) {
+        for (int row = 0; row < quizData.getNumberOfGuessesRowsInRound(); row++) {
             for (int column = 0 ; column < rowsOfGuessButtonsInAnimalQuiz[row].getChildCount(); column++) {
 
                 Button btnGuess = (Button) rowsOfGuessButtonsInAnimalQuiz[row].getChildAt(column);
                 btnGuess.setEnabled(true);
 
-                String animalImageName = lsShuffledAnimalKeys.get((row*2) + column);
+                String animalImageName = currentWrongGuesses.get((row*2) + column);
                 btnGuess.setText(animalImageName);
             }
         }
 
-        int row = secureRandomNumber.nextInt(numberOfAnimalsGuessRows);
+        int row = secureRandomNumber.nextInt(quizData.getNumberOfGuessesRowsInRound());
         int column = secureRandomNumber.nextInt(2);
         LinearLayout randomRow = rowsOfGuessButtonsInAnimalQuiz[row];
         ((Button) randomRow.getChildAt(column)).setText(correctAnimal.getName());
-        hmAllAnimals.put(correctAnimal.getKey(), correctAnimal);
-
     }
 
     public void resetAnimalQuiz() {
 
-        AssetManager assets = getActivity().getAssets();
-        hmAllAnimals.clear();
-
-        try {
-            for (String animalType : animalTypesInQuiz) {
-                String[] animalsImagePathsInQuiz = assets.list(animalType);
-                String[] animalsSoundPaths = assets.list("sounds");
-
-                for (short i=0; i < animalsImagePathsInQuiz.length; i++) {
-                    String animalImagePath = animalsImagePathsInQuiz[i];
-                    String animalSoundPath = animalsSoundPaths[i];
-                    Animal currAnimal = null;
-                    if (animalType.equals("Tame_Animals"))
-                        currAnimal = new TameAnimal(animalImagePath,animalSoundPath );
-                    if (animalType.equals("Wild_Animals"))
-                        currAnimal = new WildAnimal(animalImagePath,animalSoundPath );
-
-                    if(currAnimal != null)
-                        hmAllAnimals.put(currAnimal.getName(), currAnimal);
-                }
-            }
-
-            shuffleAnimalKeys();
-        }
-        catch (IOException ioEx) {
-            Log.e("AnimalQuizLog", "Error", ioEx);
-        }
-
-        numberOfRightAnswers = 0;
-        numberOfAllGuesses   = 0;
-        animalsNamesAttendingInQuizList.clear();
-
-        int counter = 1;
-        int numberOfAvailableAnimals = hmAllAnimals.size();
-
-        while (counter <= NUMBER_OF_ANIMALS_INCLUDED_IN_QUIZ) {
-            int randomIndex = secureRandomNumber.nextInt(numberOfAvailableAnimals);
-            String animalName = lsShuffledAnimalKeys.get(randomIndex);
-
-            if (!animalsNamesAttendingInQuizList.contains(animalName)) {
-                animalsNamesAttendingInQuizList.add(animalName);
-                ++counter;
-            }
-        }
-
+        quizData.prepareNewRound();
         showNextAnimal();
     }
 
-    public void modifyAnimalGuessRows(SharedPreferences sharedPreferences) {
-        final String NUMBER_OF_GUESS_OPTIONS = sharedPreferences.getString(MainActivity.GUESSES, null);
-        numberOfAnimalsGuessRows = Integer.parseInt(NUMBER_OF_GUESS_OPTIONS) / 2;
+    public void loadRoundGuessRows(SharedPreferences sharedPreferences) {
+        quizData.loadNumberOfGuesses(Short.parseShort(sharedPreferences.getString(MainActivity.GUESSES, null)));
 
         for (LinearLayout horizontalLinearLayout : rowsOfGuessButtonsInAnimalQuiz) {
             horizontalLinearLayout.setVisibility(View.GONE);
         }
 
-        for (int row=0; row < numberOfAnimalsGuessRows; row++) {
+        for (int row=0; row < quizData.getNumberOfGuessesRowsInRound(); row++) {
             rowsOfGuessButtonsInAnimalQuiz[row].setVisibility(View.VISIBLE);
         }
     }
 
     public void modifyTypeOfAnimalsInQuiz(SharedPreferences sharedPreferences) {
-        animalTypesInQuiz = sharedPreferences.getStringSet(MainActivity.ANIMALS_TYPES, null);
+        //animalTypesInQuiz = sharedPreferences.getStringSet(MainActivity.ANIMALS_TYPES, null);
+        quizData.loadAnimalTypesInRound(sharedPreferences.getStringSet(MainActivity.ANIMALS_TYPES, null));
     }
 
     public void modifyQuizFont(SharedPreferences sharedPreferences) {
@@ -464,5 +400,16 @@ public class MainActivityFragment extends Fragment {
         txtAnswer.setTextColor(modifiedAnswerTextColor);
         txtQuestionNumber.setTextColor(modifiedQuestionNumberTextColor);
 
+    }
+
+    public void initializeFragment(SharedPreferences sharedPreferences) {
+
+        AssetManager assets = getActivity().getAssets();
+
+        quizData.initializeData(assets, sharedPreferences.getStringSet(MainActivity.ANIMALS_TYPES, null));
+        loadRoundGuessRows(sharedPreferences);
+        modifyQuizFont(sharedPreferences);
+        modifyBackgroundColor(sharedPreferences);
+        resetAnimalQuiz();
     }
 }

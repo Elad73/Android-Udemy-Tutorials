@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "706009284548",
+    "firebase_url": "https://animalquiz-8e359.firebaseio.com",
+    "project_id": "animalquiz-8e359",
+    "storage_bucket": "animalquiz-8e359.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706009284548:android:b19ae7ea5b4c5bb2",
+        "android_client_info": {
+          "package_name": "com.animalquiz.moondragon.animalquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706009284548-bnispvatl8tob60c5c0e3g07kqfb7rva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.animalquiz.moondragon.animalquiz",
+            "certificate_hash": "de96fc31dc962099c42519ca77d528efda91fa02"
+          }
+        },
+        {
+          "client_id": "706009284548-s8ith6egbqbnuai2edu18h9oahtb45sp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEpuNHrdf1UOL2XOMK3Ui2ZXOhkH1v9bM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706009284548-s8ith6egbqbnuai2edu18h9oahtb45sp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
